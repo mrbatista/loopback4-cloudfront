@@ -51,9 +51,29 @@ jobs:
         with:
           node-version: 14
       - name: Bootstrap project
-        run: |
-          npm ci
+        run: npm ci
       - name: Build project
         run: npm run build
       - name: Verify code linting
         run: npm run lint
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    needs: [test, code-lint]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v2
+      - name: Bootstrap project
+        run: npm ci
+      - name: Build project
+        run: npm run build
+      - name: Publish package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
