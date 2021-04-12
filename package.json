@@ -25,16 +25,18 @@
     "eslint:fix": "npm run eslint -- --fix",
     "pretest": "npm run rebuild",
     "test": "lb-mocha \"dist/__tests__\"",
+    "test:ci": "node ./node_modules/@loopback/build/bin/run-nyc lb-mocha \"dist/__tests__\"",
     "posttest": "npm run lint",
     "test:dev": "lb-mocha dist/__tests__/**/*.js && npm run posttest",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
-    "rebuild": "npm run clean && npm run build"
+    "rebuild": "npm run clean && npm run build",
+    "coverage:ci": "node ./node_modules/@loopback/build/bin/run-nyc report --reporter=lcov"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mrbatista/loopback4-cloudfront.git"
   },
-  "author": "Matteo Padovano <1720896-mpadovano@users.noreply.gitlab.com>",
+  "author": "Matteo Padovano <mrbatista@users.noreply.github.com>",
   "license": "",
   "files": [
     "README.md",
@@ -51,12 +53,13 @@
   },
   "devDependencies": {
     "@loopback/build": "^6.3.1",
-    "source-map-support": "^0.5.19",
     "@loopback/core": "^2.15.1",
+    "@loopback/eslint-config": "^10.1.1",
     "@loopback/testlab": "^3.3.1",
     "@types/node": "^10.17.56",
-    "@loopback/eslint-config": "^10.1.1",
+    "coveralls": "^3.1.0",
     "eslint": "^7.23.0",
+    "source-map-support": "^0.5.19",
     "typescript": "~4.2.3"
   }
 }
