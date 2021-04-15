@@ -1,2 +1,2 @@
-export * from './cloudfront-signer.provider';
-export * from './cloudfront.provider';
+export * from './cloud-front-signer.provider';
+export * from './cloud-front.provider';

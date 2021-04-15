@@ -5,35 +5,33 @@ import {
   injectable,
   ProviderMap,
 } from '@loopback/core';
-import {CloudfrontBindings} from './keys';
-import {CloudfrontProvider, CloudfrontSignerProvider} from './providers';
+import {CloudFrontBindings} from './keys';
+import {CloudFrontProvider, CloudFrontSignerProvider} from './providers';
 
-export interface CloudfrontComponentOptions {
-  enableCloudFront: boolean;
-  enableCloudfrontSigner: boolean;
+export interface CloudFrontComponentOptions {
+  enableCloudFront?: boolean;
+  enableCloudFrontSigner?: boolean;
 }
 
-export const DEFAULT_CLOUDFRONT_OPTIONS: CloudfrontComponentOptions = {
+export const DEFAULT_CLOUD_FRONT_OPTIONS: CloudFrontComponentOptions = {
   enableCloudFront: true,
-  enableCloudfrontSigner: false,
+  enableCloudFrontSigner: false,
 };
 
-@injectable({tags: {[ContextTags.KEY]: CloudfrontBindings.COMPONENT}})
-export class CloudfrontComponent implements Component {
+@injectable({tags: {[ContextTags.KEY]: CloudFrontBindings.COMPONENT}})
+export class CloudFrontComponent implements Component {
   providers: ProviderMap = {};
 
   constructor(
     @config()
-    cloudfrontConfig: CloudfrontComponentOptions = DEFAULT_CLOUDFRONT_OPTIONS,
+    cloudfrontConfig: CloudFrontComponentOptions = DEFAULT_CLOUD_FRONT_OPTIONS,
   ) {
     if (cloudfrontConfig.enableCloudFront) {
-      this.providers[CloudfrontBindings.PROVIDER.key] = CloudfrontProvider;
+      this.providers[CloudFrontBindings.CLOUD_FRONT.key] = CloudFrontProvider;
     }
 
-    if (cloudfrontConfig.enableCloudfrontSigner) {
-      this.providers[
-        CloudfrontBindings.SIGNER_PROVIDER.key
-      ] = CloudfrontSignerProvider;
+    if (cloudfrontConfig.enableCloudFrontSigner) {
+      this.providers[CloudFrontBindings.SIGNER.key] = CloudFrontSignerProvider;
     }
   }
 }
