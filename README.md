@@ -14,15 +14,22 @@ Configure and load CloudfrontComponent in the application constructor
 as shown below.
 
 ```ts
-import {CloudfrontComponent, CloudfrontComponentOptions, DEFAULT_CLOUDFRONT_OPTIONS} from 'loopback4-cloudfront';
+import {CloudFrontComponent, CloudfrontComponentOptions} from 'loopback4-cloudfront';
 // ...
 export class MyApplication extends BootMixin(ServiceMixin(RepositoryMixin(RestApplication))) {
   constructor(options: ApplicationConfig = {}) {
-    const opts: CloudfrontComponentOptions = DEFAULT_CLOUDFRONT_OPTIONS;
-    this.configure(CloudfrontBindings.COMPONENT).to(opts);
+    // To configure component
+    this.configure(CloudFrontBindings.COMPONENT).to({
+      enableCloudFront: false, // Default to true
+      enableCloudFrontSigner: true // Default to false
+    });
+
+    // To configure Cloudfront
+    this.configure(CloudFrontBindings.CLOUD_FRONT_CONFIG).to(...);
+    });
 
     // To configure Cloudfront Signer
-    this.configure(CloudfrontBindings.SIGNER_CONFIG).to({
+    this.configure(CloudFrontBindings.SIGNER_CONFIG).to({
         keyPairId: 'your_keyPairId',
         privateKey: 'your_privateKey',
       });

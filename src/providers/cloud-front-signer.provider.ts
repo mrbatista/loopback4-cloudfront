@@ -1,12 +1,11 @@
 import {Binding, config, Getter, inject, Provider} from '@loopback/core';
-import * as AWS from 'aws-sdk';
-import {CloudfrontBindings, CloudfrontSignerConfig} from '../keys';
+import {CloudFront} from 'aws-sdk';
+import {CloudFrontBindings, CloudFrontSignerConfig} from '../keys';
 
-export class CloudfrontSignerProvider
-  implements Provider<AWS.CloudFront.Signer> {
+export class CloudFrontSignerProvider implements Provider<CloudFront.Signer> {
   constructor(
-    @config.getter({fromBinding: CloudfrontBindings.SIGNER_CONFIG})
-    private getCloudfrontSignerConfig: Getter<CloudfrontSignerConfig>,
+    @config.getter({fromBinding: CloudFrontBindings.SIGNER_CONFIG})
+    private getCloudfrontSignerConfig: Getter<CloudFrontSignerConfig>,
   ) {}
 
   @inject.binding()
@@ -23,6 +22,6 @@ export class CloudfrontSignerProvider
 
     const {keyPairId, privateKey} = options;
 
-    return new AWS.CloudFront.Signer(keyPairId, privateKey);
+    return new CloudFront.Signer(keyPairId, privateKey);
   }
 }
