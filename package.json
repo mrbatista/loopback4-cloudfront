@@ -48,18 +48,18 @@
     "@loopback/core": "*"
   },
   "dependencies": {
-    "aws-sdk": "^2.884.0",
-    "tslib": "^2.0.0"
+    "aws-sdk": "^2.1241.0",
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
-    "@loopback/build": "^6.3.1",
-    "@loopback/core": "^4.0.0",
-    "@loopback/eslint-config": "^10.1.1",
-    "@loopback/testlab": "^3.3.1",
-    "@semantic-release/git": "^9.0.0",
-    "@types/node": "^10.17.56",
-    "eslint": "^7.23.0",
-    "source-map-support": "^0.5.19",
-    "typescript": "~4.2.3"
+    "@loopback/build": "^9.0.4",
+    "@loopback/core": "^4.0.4",
+    "@loopback/eslint-config": "^13.0.4",
+    "@loopback/testlab": "^5.0.4",
+    "@semantic-release/git": "^10.0.1",
+    "@types/node": "^18.11.7",
+    "eslint": "^8.26.0",
+    "source-map-support": "^0.5.21",
+    "typescript": "~4.8.4"
   }
 }
